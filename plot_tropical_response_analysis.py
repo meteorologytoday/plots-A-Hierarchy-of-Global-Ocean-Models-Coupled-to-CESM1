@@ -83,8 +83,8 @@ for scenario in ["CTL", "EXP"]:
         casename = "%s_%s" % (ocn_model, scenario)
         _tmp = {}
         
-        atm_filename = "data/raw_averaged_result/%s/atm.nc" % (casename,)
-        ocn_filename = "data/raw_averaged_result/%s/ocn_regrid.nc" % (casename, )
+        atm_filename = "open_access_data/hierarchy_average/%s/atm.nc" % (casename,)
+        ocn_filename = "open_access_data/hierarchy_average/%s/ocn_regrid.nc" % (casename, )
             
         with Dataset(atm_filename, "r") as f:
             print("Loading file: %s" % (atm_filename,) )
