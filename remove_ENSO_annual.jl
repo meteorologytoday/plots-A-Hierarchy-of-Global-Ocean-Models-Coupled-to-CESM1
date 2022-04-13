@@ -54,7 +54,7 @@ end
 for varname in keys(sim_vars)
 
 
-    output_file = "data_extra/OGCM_$(varname)A_Statistics_remove_ENSO.nc"
+    output_file = "data_extra/OGCM_$(varname)A_Statistics_remove_ENSO_annual.nc"
     
     println("Doing varname: $varname with output file $output_file")    
 
