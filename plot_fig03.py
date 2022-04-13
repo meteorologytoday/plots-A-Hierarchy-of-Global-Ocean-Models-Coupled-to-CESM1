@@ -122,7 +122,7 @@ data["CTL"]["OGCM*"] = {}
 sim_casenames["OGCM*"] = {}
 for varname in plot_vars:
  
-    with Dataset("data_extra/OGCM_%sA_Statistics_remove_ENSO.nc" % (varname,), "r") as f:
+    with Dataset("data_extra/OGCM_%sA_Statistics_remove_ENSO_annual.nc" % (varname,), "r") as f:
         OGCM_VARA_noENSO_std = f.variables["VARA_noENSO_STD"][:]
 
 
