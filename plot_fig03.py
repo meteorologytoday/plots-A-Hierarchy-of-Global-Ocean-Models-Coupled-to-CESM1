@@ -2,17 +2,18 @@ import cartopy.crs as ccrs
 from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
 
 import matplotlib as mplt
+#mplt.use('Agg')
+
 from matplotlib import cm
 import matplotlib.ticker as mticker
 import matplotlib.patches as patches
 
 from quick_tools import *
 
-import os
-
-#mplt.use('Agg')
 
 from matplotlib import rc
+
+import os
 
 default_linewidth = 2.0;
 default_ticksize = 10.0;
@@ -55,26 +56,28 @@ def rmSignal(data, signal):
 
 
 
-ref_casename = "OGCM"
+ref_casename = "OGCM*"
 
 domain_file = "CESM_domains/domain.lnd.fv0.9x1.25_gx1v6.090309.nc"
 output_dir = "figures"
 
-plot_t_idx = [0]
-plot_t_title = [""]
 
-plot_vars = ["SST"]
-plot_types = ["plain"]
+plot_t_idx = [1, 3]
+plot_t_title = ["Jun-Jul-Aug", "Dec-Jan-Feb"]
+
+plot_vars = ["TREFHT",]
+plot_types = ["diff"]
+#plot_type = ["plain", "diff", "resp"][0]
 
 
-avg_time = ["annual", "season"][0]
+
+avg_time = ["annual", "season"][1]
 
 sim_casenames = getSimcases(["SOM", "MLM", "EMOM", "OGCM"])
 sim_var = getSimVars(plot_vars)
 
 #plot_exp_names = ["SOM", "MLM", "EMOM", "OGCM*", "OGCM"]
-#plot_exp_names = ["SOM", "MLM", "EMOM", "OGCM*"]
-plot_exp_names = ["OGCM*", "EMOM", "MLM", "SOM"]
+plot_exp_names = ["EMOM", "MLM", "SOM"]
 
 with Dataset(domain_file, "r") as f:
     lat  = f.variables["yc"][:, 0]
@@ -119,21 +122,21 @@ data["CTL"]["OGCM*"] = {}
 sim_casenames["OGCM*"] = {}
 for varname in plot_vars:
  
-    with Dataset("data_extra/OGCM_%sA_Statistics_remove_ENSO_annual.nc" % (varname,), "r") as f:
+    with Dataset("data_extra/OGCM_%sA_Statistics_remove_ENSO.nc" % (varname,), "r") as f:
         OGCM_VARA_noENSO_std = f.variables["VARA_noENSO_STD"][:]
 
 
-    data["CTL"]["OGCM*"]["%s_AASTD" % varname] = OGCM_VARA_noENSO_std 
+    data["CTL"]["OGCM*"]["%s_SASTD" % varname] = OGCM_VARA_noENSO_std 
 
 
 plot_infos = {
 
     "SST" : {
-        "display"   : "SST",
+        "display"   : "SSTA",
         "unit"      : "[${}^\\circ\\mathrm{C}$]",
-        "cmap_mean" : "GnBu",
+        "cmap_mean" : "OrRd",
         "clevels_plain"       : np.linspace(0, 1, 11),
-        "clevels_plain_tick"  : np.linspace(0, 1, 11),
+        "clevels_plain_tick"  : np.array([0, 1]),
         "clevels_diff" : np.linspace(-1, 1,  11) * 0.5,
         "clevels_resp" : np.linspace(-0.2, 0.2,  11),
         "factor"        : 1.0,
@@ -166,7 +169,7 @@ plot_infos = {
     },
 
     "TREFHT" : {
-        "display"   : "SATA",
+        "display"   : "SAT",
         "unit"      : "[degC]",
         "cmap_mean" : "OrRd",
         "clevels_plain"       : np.linspace(0, 5, 11),
@@ -186,13 +189,11 @@ try:
 except:
     pass
 
-
-
 boxes = [
-    ([30, 60], [-50, 50], -5),
-    ([30, 60], [120, 170], -5),
-    ([-70, -30], [0, 170], 5),
+    (1, [-80, -50], [-175, 175], -5),
+    (3, [30, 60], [50, 110], -5),
 ]
+
 
 proj1 = ccrs.PlateCarree(central_longitude=180.0)
 data_proj = ccrs.PlateCarree(central_longitude=0.0)
@@ -203,9 +204,9 @@ proj_kw = {
 }
 
 fig = plt.figure(figsize=(5 * len(plot_t_idx) * len(plot_vars), 3 * len(plot_exp_names)))
-heights = [1,] * len(plot_exp_names)
+heights = [1] * len(plot_exp_names)
 widths  = [1,] * (len(plot_t_idx) * len(plot_vars)) + [0.05,]
-spec = fig.add_gridspec(nrows=len(heights), ncols=len(widths), width_ratios=widths, height_ratios=heights, wspace=0.2, hspace=0.3, right=0.8) 
+spec = fig.add_gridspec(nrows=len(heights), ncols=len(widths), width_ratios=widths, height_ratios=heights, wspace=0.2, hspace=0.2, right=0.8) 
 
     
 ax = []
@@ -267,11 +268,12 @@ for k, varname in enumerate(plot_vars):
             label = exp_name
 
             print(label)
+            print(k * row_skip_per_var, "; ", j)
 
             _ax = fig.add_subplot(spec[j, k * row_skip_per_var + i], **proj_kw)
             ax.append(_ax)
 
-            j+=1
+
 
             var_mean = var_mean_temp % varname
             var_std  = var_std_temp  % varname
@@ -324,52 +326,43 @@ for k, varname in enumerate(plot_vars):
             gl.xlabel_style = {'size': 8, 'color': 'black', 'ha':'center'}
             gl.ylabel_style = {'size': 8, 'color': 'black', 'ha':'right'}
 
-            print(type(_ax))
-
-           
-            if j==1:
-                _ax.set_ylabel(plot_t_title[i])
+            
+            if j == 0:
+                _ax.set_title(plot_t_title[i])
 
             if i==0 and show_title:
 
                 if plot_type == "plain":
-                    _ax.set_title("CTL_%s " % (label, ))
+                    _ax.set_ylabel("CTL_%s " % (label, ))
 
                 elif plot_type == "diff":
                     if exp_name in ["OGCM", "OGCM*"]:
-                        _ax.set_title("CTL_%s " % (label, ))
+                        _ax.set_ylabel("CTL_%s " % (label, ))
                     else:
-                        _ax.set_title("CTL_%s - CTL_OGCM*" % (label, ))
+                        _ax.set_ylabel("CTL_%s bias" % (label, ), fontsize=15, labelpad=30)
 
                 elif plot_type == "resp":
-                    _ax.set_title("SIL_%s - CTL_%s" % (label, label))
+                    _ax.set_ylabel("SIL_%s - CTL_%s" % (label, label), labelpad=8)
+            
+            j+=1
 
-            for l, (lat_rng, lon_rng, text_pos) in enumerate(boxes):
-                _ax.add_patch(patches.Rectangle((lon_rng[0], lat_rng[0]), lon_rng[1] - lon_rng[0], lat_rng[1] - lat_rng[0], linewidth=1, edgecolor='black', facecolor='none'))
+            for l, (_t_idx, lat_rng, lon_rng, text_pos) in enumerate(boxes):
+                if _t_idx == t_idx:
 
-                ha = "left" if text_pos >= 0 else "right"
-                text_pos = lon_rng[0 if text_pos >= 0 else 1] + text_pos
-                _ax.text(text_pos, np.mean(lat_rng), "%s" % ("ABCDEFG"[l]), va="center", ha=ha, color="black")
-         
-    cax = fig.add_subplot(spec[0, -1])#k*row_skip_per_var:(k+1)*row_skip_per_var])
-    cb = fig.colorbar(mappable,  cax=cax, ticks=clevels_tick, orientation="vertical")
-    #cax.yaxis.set_ticks_position("left")
-    #cax.yaxis.set_label_position("left")
+                    _ax.add_patch(patches.Rectangle((lon_rng[0], lat_rng[0]), lon_rng[1] - lon_rng[0], lat_rng[1] - lat_rng[0], linewidth=1, edgecolor='black', facecolor='none', zorder=99))
+                    ha = "left" if text_pos >= 0 else "right"
+                    text_pos = lon_rng[0 if text_pos >= 0 else 1] + text_pos
+                    _ax.text(text_pos, np.mean(lat_rng), "%s" % ("ABCDEFG"[l]), va="center", ha=ha, color="black")
+     
+    #cax = fig.add_subplot(spec[k*row_skip_per_var:(k+1)*row_skip_per_var, -1])
+    #cb = fig.colorbar(mappable,  cax=cax, ticks=clevels_tick, orientation="vertical")
+    #cb.set_label("std(%s) %s" % (plot_info["display"], plot_info["unit"]), fontsize=15)
 
-    cb.set_label("%s variability %s" % (plot_info["display"], plot_info["unit"]), fontsize=15)
-
-
-   
-
-    """
     if plot_type == "diff":
-        cax_diff = fig.add_subplot(spec[0, k*row_skip_per_var:(k+1)*row_skip_per_var])
+        cax_diff = fig.add_subplot(spec[0, -1])
         #cb_diff = fig.colorbar(mappable_diff,  cax=cax_diff, ticks=clevels_diff_tick, orientation="vertical")
         cb_diff = fig.colorbar(mappable_diff,  cax=cax_diff, orientation="vertical")
-        cb_diff.set_label("std(%s) bias %s" % (plot_info["display"], plot_info["unit"]), fontsize=15)
-        cax_diff.yaxis.set_ticks_position("left")
-        cax_diff.yaxis.set_label_position("left")
-    """
+        cb_diff.set_label("%s variability\nbias %s" % (plot_info["display"], plot_info["unit"]), fontsize=15)
 
 
         #if ax_idx[1] == 0:
@@ -390,7 +383,7 @@ for _ax in ax:
 
 #        fig.subplots_adjust(right=0.85)
 
-fig.savefig("%s/fig02_ctl-variability_SST_col.png" % (output_dir,), dpi=600)
+fig.savefig("%s/fig03_ctl-variability_SAT_col.png" % (output_dir,), dpi=600)
 plt.show()
 plt.close(fig)
 

@@ -5,3 +5,4 @@ figures/
 data/
 data
 data_extra/
+__pycache__/
