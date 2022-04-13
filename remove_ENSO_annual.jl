@@ -16,7 +16,7 @@ function rmSignal(data, signal)
                
 end
 
-ENSO_file = "data/CTL_21-120/POP2_CTL/atm_analysis_ENSO.nc"
+ENSO_file = "data/hierarchy_statistics/CTL_21-120/POP2_CTL/atm_analysis_ENSO.nc"
 
 
 modes_removed = 2
@@ -25,7 +25,7 @@ println("Getting cases...")
 pushfirst!(PyVector(pyimport("sys")."path"), ".")
 tools = pyimport("quick_tools")
 sim_cases = tools.getSimcases(["OGCM"])
-sim_vars = tools.getSimVars(["SST", "PSL", "TREFHT"])
+sim_vars = tools.getSimVars(["SST", "TREFHT"])
 println("Done")
 
 avg_time = ["season", "annual"][1]
@@ -54,11 +54,11 @@ end
 for varname in keys(sim_vars)
 
 
-    output_file = "OGCM_$(varname)A_Statistics_remove_ENSO.nc"
+    output_file = "data_extra/OGCM_$(varname)A_Statistics_remove_ENSO.nc"
     
     println("Doing varname: $varname with output file $output_file")    
 
-    Dataset(joinpath("data", sim_cases["OGCM"]["CTL"], sim_vars[varname]), "r") do ds
+    Dataset(joinpath("data", "hierarchy_statistics", sim_cases["OGCM"]["CTL"], sim_vars[varname]), "r") do ds
         global OGCM_VAR_MA = nomissing(ds["$(varname)_MA"][:, :, 1, :], NaN)
     end
 

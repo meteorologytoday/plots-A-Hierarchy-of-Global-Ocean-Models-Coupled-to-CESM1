@@ -104,7 +104,7 @@ for scenario in ["CTL", "EXP"]:
         
         for varname, filename  in sim_var.items():
 
-            filename = "data/%s/%s" % (casename, filename, )
+            filename = "data/hierarchy_statistics/%s/%s" % (casename, filename, )
             
             with Dataset(filename, "r") as f:
                 print("%s => %s" % (casename, varname))

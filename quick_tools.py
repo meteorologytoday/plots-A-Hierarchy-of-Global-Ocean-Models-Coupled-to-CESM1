@@ -59,8 +59,8 @@ def getSimcases(casenames):
     all_simcases = {
 
         "SOM" : {
-            "CTL": "CTL_21-120/SOM_CTL_coupled",
-            "EXP": "EXP_81-180/SOM_EXP_coupled",
+            "CTL": "CTL_21-120/SOM_CTL",
+            "EXP": "EXP_81-180/SOM_EXP",
             "lc" : "red",
             "ls" : "-",
             "ax_idx" : (0, 0),
@@ -68,8 +68,8 @@ def getSimcases(casenames):
         },
 
         "MLM" : {
-            "CTL": "CTL_21-120/MLM_CTL_coupled",
-            "EXP": "EXP_81-180/MLM_EXP_coupled",
+            "CTL": "CTL_21-120/MLM_CTL",
+            "EXP": "EXP_81-180/MLM_EXP",
             "lc" : "limegreen",
             "ls" : "-",
             "ax_idx" : (0, 1),
@@ -77,8 +77,8 @@ def getSimcases(casenames):
         },
         
         "EMOM" : {
-            "CTL": "CTL_21-120/EMOM_CTL_coupled",
-            "EXP": "EXP_81-180/EMOM_EXP_coupled",
+            "CTL": "CTL_21-120/EMOM_CTL",
+            "EXP": "EXP_81-180/EMOM_EXP",
             "lc" : "dodgerblue",
             "ls" : "-",
             "ax_idx" : (0, 2),
@@ -87,7 +87,7 @@ def getSimcases(casenames):
 
         "OGCM" : {
             "CTL": "CTL_21-120/POP2_CTL",
-            "EXP": "EXP_POP2/POP2_EXP_81-180",
+            "EXP": "EXP_81-180/POP2_EXP",
             "lc" : "black",
             "ls" : "-",
             "ax_idx" : (0, 3),
@@ -119,7 +119,7 @@ def getSimcases(casenames):
         },
 
         "MLM_tau01" : {
-            "CTL": "CTL_21-120/MLM_CTL_coupled",
+            "CTL": "CTL_21-120/MLM_CTL",
             "EXP": "SRT_21-120/MLM_tau01year",
             "lc" : "limegreen",
             "ls" : "-",

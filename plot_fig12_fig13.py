@@ -415,8 +415,10 @@ ax[1].grid()
 
 fig.savefig("%s/fig13-tropical_response_analysis_EMOM_OHT.png" % (output_dir,), dpi=600)
 plt.show()
+
 ###############
 # vertical-longitudinal temperature change
+"""
 fig, ax = plt.subplots(1, 1, figsize=(12, 4))
 
 valid_idx = (np.abs(lat) < 5.0)
@@ -449,8 +451,4 @@ ax.set_ylim([0, 2000])
 ax.invert_yaxis()
 
 plt.show()
- 
-
-# Compute temperature stratification
-
-
+""" 
