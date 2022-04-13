@@ -12,6 +12,7 @@ plot_codes=(
     $jl "plot_fig06.jl --EOF PDO"
     $py plot_fig07.py
     $py plot_fig08.py
+    $py plot_fig09.py
     $py plot_fig10.py
     $py plot_fig12_fig13.py
 )
