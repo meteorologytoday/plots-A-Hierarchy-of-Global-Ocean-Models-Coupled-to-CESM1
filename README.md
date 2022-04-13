@@ -3,6 +3,11 @@ This project contains the code files to generate scientific figures in the paper
 
 Hsu, T. Y., Primeau, F. W., & Magnusdottir, G. (2022). A Hierarchy of Global Ocean Models Coupled to CESM1.
 
+# Requirement
+
+- Platform  : Unix-like machine
+- Languages : Python3 (Matplotlib, Scipy, Numpy, Cartopy, netCDF4), Julia (PyPlot, PyCall, NCDatasets, Formatting, Statistics, ArgMacros, Distributions)
+
 # How to generate the figures
 
 First, download the dataset from [https://doi.org/10.7280/D1V97T](https://doi.org/10.7280/D1V97T) or [Datadryad direct download link](https://datadryad.org/stash/share/fizzfQYLdKduFO_alkDIXkNM0qBbrGBXbolkMW64d6Y)
@@ -41,3 +46,12 @@ workspace (plots-A-Hierarchy-of-Global-Ocean-Models-Coupled-to-CESM1)
 └── SpectralAnalysis.jl
 ```
 
+Finally, execute the following scripts to produce figures. The output figures will be in the newly created folder `figures`
+
+```
+$> ./make_figures.sh
+
+$> ls figures
+
+$> ./clean.sh # This removes all the figures and meta data generated
+```
