@@ -136,5 +136,5 @@ ax.invert_yaxis()
 #ax.text(0.1, 0.9, "(b)", va="top", ha="left", transform=ax[1].transAxes)
 
 
-fig.savefig("figures/AMOC_psi_revised.png", dpi=600)
+fig.savefig("figures/fig08_AMOC_psi.png", dpi=600)
 plt.show()

@@ -23,10 +23,12 @@ plot_codes=(
 
 
 
-mkdir -p data_extra
+mkdir figures
+mkdir data_extra
 
 echo "Making extra data into data_extra"
-$ju remove_ENSO_annual.jl
+$jl remove_ENSO_annual.jl
+
 
 N=$(( ${#plot_codes[@]}  ))
 echo "We have $N file(s) to run..."
@@ -36,3 +38,6 @@ for i in $( seq 1 $(( ${#plot_codes[@]} / 2 )) ) ; do
     echo "=====[ Running file: $FILE ]====="
     eval "$PROG $FILE" &
 done
+
+
+wait

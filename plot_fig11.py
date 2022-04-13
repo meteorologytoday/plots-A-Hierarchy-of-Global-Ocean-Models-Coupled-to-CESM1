@@ -53,7 +53,7 @@ def area_mean(data, area):
     return sum(data[idx] * aa) / sum(aa)
  
 domain_file = "CESM_domains/domain.lnd.fv0.9x1.25_gx1v6.090309.nc"
-output_dir = "graph"
+output_dir = "figures"
 plot_vars = ["PREC_TOTAL"]
 
 sim_casenames = getSimcases(["SOM", "MLM", "EMOM", "OGCM"])
@@ -350,7 +350,7 @@ for (i, varname) in enumerate(plot_vars):
 
 ax[0].legend(ncol=1, loc='upper left', framealpha=1, fontsize=12, columnspacing=1.0, handletextpad=0.3)
 
-fig.savefig("figures/fig11_diff_zmean_SST.png", dpi=600)
+fig.savefig("%s/fig11_diff_zmean_SST.png" % (output_dir,), dpi=600)
 plt.show()
 plt.close(fig)
 
