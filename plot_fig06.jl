@@ -1,5 +1,4 @@
-#include("SpectrumTools.jl")
-include("SpectralAnalysis/src/SpectralAnalysis.jl")
+include("SpectralAnalysis.jl")
 
 using .SpectralAnalysis
 

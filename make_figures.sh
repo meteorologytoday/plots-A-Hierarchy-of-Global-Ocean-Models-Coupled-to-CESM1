@@ -14,19 +14,19 @@ plot_codes=(
     $py plot_fig08.py
     $py plot_fig09.py
     $py plot_fig10.py
+    $py plot_fig11.py
     $py plot_fig12_fig13.py
+    $py plot_fig14.py
 )
-
-plot_codes=(
-)
-
 
 # Some code to download data and extract them
+
+
 
 mkdir -p data_extra
 
 echo "Making extra data into data_extra"
-#$ju remove_ENSO_annual.jl
+$ju remove_ENSO_annual.jl
 
 N=$(( ${#plot_codes[@]}  ))
 echo "We have $N file(s) to run..."
@@ -34,5 +34,5 @@ for i in $( seq 1 $(( ${#plot_codes[@]} / 2 )) ) ; do
     PROG="${plot_codes[$(( (i-1) * 2 + 0 ))]}"
     FILE="${plot_codes[$(( (i-1) * 2 + 1 ))]}"
     echo "=====[ Running file: $FILE ]====="
-    eval "$PROG $FILE"
+    eval "$PROG $FILE" &
 done

@@ -356,8 +356,9 @@ for _ax in ax:
     _ax.set_extent([130, 350, -12, 12], crs=ccrs.PlateCarree())
 
 fig.savefig("%s/fig12-tropical_response_analysis.png" % (output_dir,), dpi=600)
-plt.show()
-plt.close(fig)
+
+#plt.show()
+#plt.close(fig)
 
 #######################################
 # EMOM tropical heat transport in TAUX and TAUY components    
