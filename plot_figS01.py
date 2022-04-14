@@ -82,11 +82,11 @@ data = {}
 
 print("Loading data")
         
-with Dataset("data/importance_of_KH/atm_21-30.nc", "r") as f:
+with Dataset("data/supp/importance_of_KH/atm_21-30.nc", "r") as f:
     data["precip"] = f.variables["PRECC"][0, :, :] + f.variables["PRECL"][0, :, :]
     data["TAUY"] = f.variables["TAUY"][0, :, :]
 
-with Dataset("data/importance_of_KH/ocn_21-30.nc", "r") as f:
+with Dataset("data/supp/importance_of_KH/ocn_21-30.nc", "r") as f:
     data["TEMP"] = f.variables["TEMP"][0, :, :, :]
     data["VVEL"] = f.variables["VVEL"][0, :, :, :]
     data["WVEL"] = f.variables["WVEL"][0, :, :, :]

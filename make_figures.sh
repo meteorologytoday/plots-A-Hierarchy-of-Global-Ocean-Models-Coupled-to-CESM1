@@ -19,7 +19,13 @@ plot_codes=(
     $py plot_fig14.py
     $py plot_figS01.py
     $py plot_figS02b.py
+    $py plot_figS03.py
 )
+
+plot_codes=(
+    $py plot_figS04.py
+)
+
 
 # Some code to download data and extract them
 
