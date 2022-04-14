@@ -20,12 +20,10 @@ plot_codes=(
     $py plot_figS01.py
     $py plot_figS02b.py
     $py plot_figS03.py
-)
-
-plot_codes=(
     $py plot_figS04.py
+    $py plot_figS05.py
+    $py plot_figS06.py
 )
-
 
 # Some code to download data and extract them
 
