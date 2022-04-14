@@ -51,8 +51,6 @@ println("Removing signal of ENSO out of OGCM")
 println("1. Load data")
 Dataset(ENSO_file, "r") do ds
     global _ENSO_idx = nomissing(ds["PCAs_ts"][1:modes_removed, :], NaN)
-
-    _ENSO_idx[1, :] = nomissing(ds["EN34"][:])
 end
 
 
