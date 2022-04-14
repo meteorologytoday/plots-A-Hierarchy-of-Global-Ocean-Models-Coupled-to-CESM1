@@ -48,3 +48,5 @@ done
 
 
 wait
+
+echo "Done. Now please run 02_postprocess_figures.sh"

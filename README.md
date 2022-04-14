@@ -49,7 +49,8 @@ workspace (plots-A-Hierarchy-of-Global-Ocean-Models-Coupled-to-CESM1)
 Finally, execute the following scripts to produce figures. The output figures will be in the newly created folder `figures`
 
 ```
-$> ./make_figures.sh  # Generate figures
-$> ls figures/        # List the generated figures
-$> ./clean.sh         # This removes all the figures and meta-data (data_extra directory) generated
+$> ./01_make_figures.sh         # Generate figures
+$> ./02_postprocess_figures.sh  # Trim the figures mostly
+$> ls final_figures/            # List the generated figures
+$> ./99_clean.sh         # This removes all the figures and meta-data (data_extra directory) generated
 ```

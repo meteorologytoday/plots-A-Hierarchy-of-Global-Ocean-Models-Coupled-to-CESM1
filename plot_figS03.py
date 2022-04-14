@@ -73,7 +73,7 @@ data = {}
 
 for ocn_model in loaded_ocn_models:
 
-    filename = "data/supp/OHC_data/OHC_diff_%s.nc" % (ocn_model,)
+    filename = "data/supp/ocean_heat_content_trend/OHC_diff_%s.nc" % (ocn_model,)
         
     with Dataset(filename, "r") as f:
 

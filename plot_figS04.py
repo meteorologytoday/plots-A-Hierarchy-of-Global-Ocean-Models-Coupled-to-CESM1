@@ -410,7 +410,8 @@ for m in [4,]:
 #    cb_std_diff.ax.tick_params(labelsize=30)
 
 
-    plt.show()
     fig.savefig("%s/figS04_CTL_map_%s_%s_col.png" % (output_dir, plot_type,ext), dpi=600)
+    plt.show()
+
     plt.close(fig)
 

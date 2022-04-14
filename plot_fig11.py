@@ -350,7 +350,7 @@ for (i, varname) in enumerate(plot_vars):
 
 ax[0].legend(ncol=1, loc='upper left', framealpha=1, fontsize=12, columnspacing=1.0, handletextpad=0.3)
 
-fig.savefig("%s/fig11_diff_zmean_SST.png" % (output_dir,), dpi=600)
+fig.savefig("%s/fig11_diff_zmean_PREC.png" % (output_dir,), dpi=600)
 plt.show()
 plt.close(fig)
 

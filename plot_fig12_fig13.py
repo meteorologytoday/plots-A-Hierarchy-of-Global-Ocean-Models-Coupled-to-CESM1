@@ -355,7 +355,7 @@ for _ax in ax:
     #_ax.set_extent([100, 270, -30, 30], crs=ccrs.PlateCarree())
     _ax.set_extent([130, 350, -12, 12], crs=ccrs.PlateCarree())
 
-fig.savefig("%s/fig12-tropical_response_analysis.png" % (output_dir,), dpi=600)
+fig.savefig("%s/fig12_tropical_response_analysis.png" % (output_dir,), dpi=600)
 
 #plt.show()
 #plt.close(fig)
@@ -414,7 +414,7 @@ ax[1].legend()
 ax[0].grid()
 ax[1].grid()
 
-fig.savefig("%s/fig13-tropical_response_analysis_EMOM_OHT.png" % (output_dir,), dpi=600)
+fig.savefig("%s/fig13_tropical_response_analysis_EMOM_OHT.png" % (output_dir,), dpi=600)
 plt.show()
 
 ###############
