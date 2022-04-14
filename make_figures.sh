@@ -18,6 +18,7 @@ plot_codes=(
     $py plot_fig12_fig13.py
     $py plot_fig14.py
     $py plot_figS01.py
+    $jl plot_figS02a.jl
     $py plot_figS02b.py
     $py plot_figS03.py
     $py plot_figS04.py

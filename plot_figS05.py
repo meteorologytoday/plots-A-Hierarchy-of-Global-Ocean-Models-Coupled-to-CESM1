@@ -33,8 +33,6 @@ from netCDF4 import Dataset
 import numpy as np
 from pprint import pprint
 
-time_folder = "consistent_50years"
-nyears = 50
 
 def ext(data):
     s = data.shape
@@ -53,7 +51,7 @@ def area_mean(data, area):
     return sum(data[idx] * aa) / sum(aa)
  
 domain_file = "CESM_domains/domain.lnd.fv0.9x1.25_gx1v6.090309.nc"
-output_dir = "graph"
+output_dir = "figures"
 plot_vars = ["PREC_TOTAL", ]
 
 sim_casenames = getSimcases(["SOM", "MLM", "EMOM", "OGCM"])

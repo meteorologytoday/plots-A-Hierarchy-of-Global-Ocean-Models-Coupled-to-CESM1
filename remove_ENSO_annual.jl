@@ -19,7 +19,7 @@ end
 ENSO_file = "data/hierarchy_statistics/CTL_21-120/POP2_CTL/atm_analysis_ENSO.nc"
 
 
-modes_removed = 2
+modes_removed = 1
 
 println("Getting cases...")
 pushfirst!(PyVector(pyimport("sys")."path"), ".")
@@ -28,7 +28,7 @@ sim_cases = tools.getSimcases(["OGCM"])
 sim_vars = tools.getSimVars(["SST", "TREFHT"])
 println("Done")
 
-avg_time = ["season", "annual"][1]
+avg_time = ["season", "annual", "monthly"][1]
 
 
 if avg_time == "season"
@@ -37,6 +37,9 @@ if avg_time == "season"
 elseif avg_time == "annual"
     roll_offset = 0
     avg_len = 12
+elseif avg_time == "monthly"
+    roll_offset = 0
+    avg_len = 1
 end
 
 annual_variability_jump = Int64(12 / avg_len)
@@ -48,6 +51,8 @@ println("Removing signal of ENSO out of OGCM")
 println("1. Load data")
 Dataset(ENSO_file, "r") do ds
     global _ENSO_idx = nomissing(ds["PCAs_ts"][1:modes_removed, :], NaN)
+
+    _ENSO_idx[1, :] = nomissing(ds["EN34"][:])
 end
 
 

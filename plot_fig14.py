@@ -60,7 +60,7 @@ def divergence(flux, lat):
 
 
 domain_file = "CESM_domains/domain.lnd.fv0.9x1.25_gx1v6.090309.nc"
-output_dir = "graph"
+output_dir = "figures"
         
 OGCM_list = ["OGCM",]
 

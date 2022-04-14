@@ -241,10 +241,6 @@ for k, varname in enumerate(plot_vars):
     else:
         clevels_tick  = plot_info["clevels_plain"]
 
-    # temporary to see the change in SST variability in percentage
-    #cmap_plain = "bwr"
-    #clevels_plain = np.linspace(-100, 100, 21)
-    #clevels_tick = np.linspace(-100, 100, 21)
 
     if "clevels_diff_tick" in plot_info:
         clevels_diff_tick  = plot_info["clevels_diff_tick"]
@@ -278,7 +274,6 @@ for k, varname in enumerate(plot_vars):
             var_mean = var_mean_temp % varname
             var_std  = var_std_temp  % varname
                
-            #_EXP = data["EXP"][exp_name][var_std][t_idx, :, :] * factor
             _CTL = data["CTL"][exp_name][var_std][t_idx, :, :] * factor
             _ref_CTL = data["CTL"][ref_casename][var_std][t_idx, :, :] * factor
 
@@ -286,19 +281,11 @@ for k, varname in enumerate(plot_vars):
             #_ref_SOM_CTL = data["CTL"]["SOM"][var_std][t_idx, :, :] * factor
 
             if not (varname in ["PSL", "TREFHT", "PREC_TOTAL"]):
-                #_EXP[mask_lnd] = np.nan
                 _CTL[mask_lnd] = np.nan
                 _ref_CTL[mask_lnd] = np.nan
 
             if plot_type == "plain":
                 mappable = _ax.contourf(lon, lat, _CTL,  clevels_plain,  cmap=cmap_plain, transform=data_proj, extend="max")
-
-                # temporary compute the change of SST variability in percentage
-                #d = (_CTL - _ref_SOM_CTL) / _ref_SOM_CTL * 100.0
-                #d = d[d<0]
-                #print(d.mean(), "; ", d.std())
-                #mappable = _ax.contourf(lon, lat, (_CTL - _ref_SOM_CTL) / _ref_SOM_CTL * 100.0,  clevels_plain,  cmap=cmap_plain, transform=data_proj, extend="max")
-                #mappable = _ax.contour(lon, lat, _CTL,  clevels_plain,  transform=data_proj)
 
             elif plot_type == "diff":
 
