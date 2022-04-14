@@ -6,3 +6,5 @@ data/
 data
 data_extra/
 __pycache__/
+
+misc/
