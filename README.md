@@ -27,6 +27,7 @@ workspace (plots-A-Hierarchy-of-Global-Ocean-Models-Coupled-to-CESM1)
 │   ├── AMOC
 │   ├── hierarchy_average
 │   ├── hierarchy_statistics
+│   ├── supp
 │   └── README
 ├── make_figures.sh
 ├── plot_fig02.py

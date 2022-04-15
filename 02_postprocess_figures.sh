@@ -34,13 +34,17 @@ cp figures/fig14_heat_transport_analysis.png final_figures/fig14.png
 
 
 cp figures/figS01_importance_of_KH.png final_figures/figS01.png
-cp figures/figS02a_ocean_mean_temperature_timeseries.png final_figures/figS02a.png
-cp figures/figS02b_AMOC_timeseries.png final_figures/figS02b.png
+
+# Merging two sub-figures
+convert \( figures/figS02a_ocean_mean_temperature_timeseries.png -background white -splice 0x300 -gravity NorthWest -pointsize 200 -annotate +200+200 '(a)' \) \
+    \( figures/figS02b_AMOC_timeseries.png -background white -splice 0x300 -gravity NorthWest -pointsize 200 -annotate +200+200 '(b)' \) -gravity center -append \
+     final_figures/figS02.png
+
 cp figures/figS03_OHC_trend.png final_figures/figS03.png
 convert figures/figS04_CTL_map_diff_MEAN_col.png -gravity North -chop x500 -gravity South -chop x500 -gravity West -chop 100x final_figures/figS04.png
 cp figures/figS05_CTL_zmean_precip.png final_figures/figS05.png
 cp figures/figS06_seaice_target_map_contour.png final_figures/figS06.png
-
+convert figures/figS06_seaice_target_map_contour.png -gravity West -chop 2000x -gravity East -chop 3000x final_figures/figS06.png
 
 #convert tropical_response_analysis_OHC.png -gravity North -chop x600 -gravity South -chop x600 -gravity West -chop 100x tropical_response_analysis_OHC_crop.png
 
