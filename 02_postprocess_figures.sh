@@ -1,10 +1,11 @@
 #!/bin/bash
 
 
+echo "Making output directory 'final_figures'..."
 mkdir final_figures
 
 
-
+echo "Making final figures... "
 convert figures/fig02_ctl-variability_SST_col.png -gravity North -chop x600 -gravity South -chop x600 -gravity West -chop 100x final_figures/fig02.png
 
 convert figures/fig03_ctl-variability_SAT_col.png -gravity North -chop x500 -gravity South -chop x450 -gravity West -chop 300x -gravity East -chop 450x final_figures/fig03.png
@@ -48,4 +49,4 @@ convert figures/figS06_seaice_target_map_contour.png -gravity West -chop 2000x -
 
 #convert tropical_response_analysis_OHC.png -gravity North -chop x600 -gravity South -chop x600 -gravity West -chop 100x tropical_response_analysis_OHC_crop.png
 
-
+echo "Done."
