@@ -1,7 +1,7 @@
 *.pyc
 *.swp
-*.png
 figures/
+final_figures/
 data/
 data
 data_extra/

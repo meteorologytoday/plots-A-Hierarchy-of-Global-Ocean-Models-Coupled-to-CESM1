@@ -29,6 +29,7 @@ workspace (plots-A-Hierarchy-of-Global-Ocean-Models-Coupled-to-CESM1)
 │   ├── hierarchy_statistics
 │   ├── supp
 │   └── README
+├── paper_figures
 ├── make_figures.sh
 ├── plot_fig02.py
 ├── plot_fig03.py
