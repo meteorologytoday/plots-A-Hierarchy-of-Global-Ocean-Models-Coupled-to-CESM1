@@ -1,7 +1,7 @@
 # Information
 This project contains the code files to generate scientific figures in the paper.
 
-Hsu, T. Y., Primeau, F. W., & Magnusdottir, G. (2022). A Hierarchy of Global Ocean Models Coupled to CESM1.
+Hsu, T. Y., Primeau, F. W., & Magnusdottir, G. (2022). A Hierarchy of Global Ocean Models Coupled to CESM1. Journal of Advances in Modeling Earth Systems.
 
 # Requirement
 
