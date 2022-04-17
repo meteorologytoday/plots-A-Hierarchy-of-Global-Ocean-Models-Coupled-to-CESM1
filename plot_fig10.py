@@ -57,7 +57,8 @@ def area_mean(data, area):
 domain_file = "CESM_domains/domain.lnd.fv0.9x1.25_gx1v6.090309.nc"
 output_dir = "figures"
 
-sim_casenames = getSimcases(["SOM", "MLM", "EMOM", "OGCM"])
+#sim_casenames = getSimcases(["SOM", "MLM", "EMOM", "OGCM"])
+sim_casenames = getSimcases(["OGCM", "EMOM", "MLM", "SOM"])
 sim_var = getSimVars(["SST", "PREC_TOTAL"])
 
 Re = 6371e3
